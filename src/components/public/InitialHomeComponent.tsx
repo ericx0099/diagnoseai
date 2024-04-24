@@ -9,8 +9,10 @@ import {
   IconProps,
   Image,
   Card,
-  Grid
-  , CardHeader, CardBody, CardFooter
+  Grid,
+  CardHeader,
+  CardBody,
+  CardFooter,
 } from "@chakra-ui/react";
 import { useTranslation } from "react-i18next";
 import { BsStars } from "react-icons/bs";
@@ -49,19 +51,15 @@ const CardInformation = ({
 }) => {
   return (
     <Card shadow={"xl"}>
-     <CardBody>
-     <Flex justifyContent={"center"}>
-     <Image src={src} width={300} />
-     </Flex>
-     <Stack mt='6' spacing='3'>
-      <Heading size='md'>{title}</Heading>
-      <Text>
-      {description}
-      </Text>
-    
-    </Stack>
-     </CardBody>
-
+      <CardBody>
+        <Flex justifyContent={"center"}>
+          <Image src={src} width={300} />
+        </Flex>
+        <Stack mt="6" spacing="3">
+          <Heading size="md">{title}</Heading>
+          <Text>{description}</Text>
+        </Stack>
+      </CardBody>
     </Card>
   );
 };
@@ -75,7 +73,6 @@ export default function CallToActionWithIllustration() {
           align={"center"}
           spacing={{ base: 8, md: 10 }}
           py={{ base: 20, md: 28 }}
-
         >
           <Heading
             fontWeight={600}
@@ -93,7 +90,12 @@ export default function CallToActionWithIllustration() {
           <MainDiagnoseInputComponent />
         </Stack>
       </Container>
-      <Grid w={"100%"} gridTemplateColumns={{ base: "1fr", md: "1fr 1fr 1fr 1fr" }} gridGap={10} mb={50}>
+      <Grid
+        w={"100%"}
+        gridTemplateColumns={{ base: "1fr", md: "1fr 1fr 1fr 1fr" }}
+        gridGap={10}
+        mb={50}
+      >
         {items.map((item, i) => {
           return <CardInformation key={i} {...item} />;
         })}
