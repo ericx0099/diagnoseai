@@ -53,11 +53,10 @@ export default function Nav({ user }: { user: User | null }) {
         bg={useColorModeValue("white", "gray.700")}
         px={4}
         mt={5}
-        mx={{base:5,md:200}}
+        mx={{ base: 5, md: 200 }}
         borderRadius={"30px"}
         border={"1px solid #3af05e"}
         boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px;"}
-      
       >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>{APP_NAME}</Box>
@@ -76,7 +75,11 @@ export default function Nav({ user }: { user: User | null }) {
                 >
                   <Avatar
                     size={"sm"}
-                    src={user && user.image ? user.image : "https://avatars.dicebear.com/api/male/username.svg"}
+                    src={
+                      user && user.image
+                        ? user.image
+                        : "https://avatars.dicebear.com/api/male/username.svg"
+                    }
                   />
                 </MenuButton>
                 {user && (
@@ -85,16 +88,22 @@ export default function Nav({ user }: { user: User | null }) {
                     <Center>
                       <Avatar
                         size={"2xl"}
-                        src={user.image ? user.image : "https://avatars.dicebear.com/api/male/username.svg"}
+                        src={
+                          user.image
+                            ? user.image
+                            : "https://avatars.dicebear.com/api/male/username.svg"
+                        }
                       />
                     </Center>
                     <br />
                     <Center>
-                      <p>{user.name} - {user.email}</p>
+                      <p>
+                        {user.name} - {user.email}
+                      </p>
                     </Center>
                     <br />
                     <MenuDivider />
-             
+
                     <MenuItem>Logout</MenuItem>
                   </MenuList>
                 )}
