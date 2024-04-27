@@ -5,14 +5,20 @@ import AuthPopupComponent from "../auth/AuthPopupComponent";
 import { useTranslation } from "react-i18next";
 import { useSession } from "next-auth/react";
 
-const ButtonGetDiagnosis = () => {
+
+interface Props {
+  callback: () => void;
+}
+
+const ButtonGetDiagnosis = ({ callback }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { data: session, status } = useSession();
+
 
   const handleClick = () => {
     if (session && session.user) {
       //DO STUFF
-      alert("diagnosing");
+      callback();
     } else {
       onOpen();
     }

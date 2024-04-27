@@ -2,6 +2,7 @@ import GoogleProvider from "next-auth/providers/google";
 import NextAuth from "next-auth/next";
 import { JWT, JWTEncodeParams } from "next-auth/jwt";
 import jwt from "jsonwebtoken";
+import { Account } from "next-auth";
 
 const JWT_SECRET = process.env.NEXT_PRIVATE_JWT_SECRET!;
 export const authOptions = {
@@ -9,7 +10,6 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.NEXT_PRIVATE_GOOGLE_CLIENT_ID!,
       clientSecret: process.env.NEXT_PRIVATE_GOOGLE_CLIENT_SECRET!,
-
     }),
   ],
   cookies: {
@@ -29,27 +29,27 @@ export const authOptions = {
     encryption: false,
     secret: JWT_SECRET!,
     decode: async ({ token }: { token?: string }) => {
-			// Note the token is now optional
-			if (!token) {
-				// If token is not provided, return null or handle as needed
-				return null;
-			}
-			try {
-				const result = jwt.verify(token, JWT_SECRET) as JWT;
-				return result;
-			} catch (err) {
-				return null;
-			}
-		},
-		encode: async (params: JWTEncodeParams): Promise<string> => {
-			if (!params.token) {
-				throw new Error("Token not provided");
-			}
-			if (params.token.exp) {
-				delete params.token.exp;
-			}
+      // Note the token is now optional
+      if (!token) {
+        // If token is not provided, return null or handle as needed
+        return null;
+      }
+      try {
+        const result = jwt.verify(token, JWT_SECRET) as JWT;
+        return result;
+      } catch (err) {
+        return null;
+      }
+    },
+    encode: async (params: JWTEncodeParams): Promise<string> => {
+      if (!params.token) {
+        throw new Error("Token not provided");
+      }
+      if (params.token.exp) {
+        delete params.token.exp;
+      }
 
-			const _token = jwt.sign(params.token, JWT_SECRET, { expiresIn: "12h" });
+      const _token = jwt.sign(params.token, JWT_SECRET, { expiresIn: "12h" });
       /*
 			try {
 				const url = `${BACKEND_URL}/auth/store-session`;
@@ -58,21 +58,18 @@ export const authOptions = {
 				//console.log(err);
 			}
       */
-			return _token;
-		}
-
+      return _token;
+    },
   },
 
   callbacks: {
     session({ session, token }: { session: any; token: any }) {
       return session;
     },
-    async signIn(everything: { account: { provider: string; }; user: any; }) {
-      if (everything.account && everything.account.provider == "google") {
-   
-        
+    async signIn(everything: { account: Account | null; user: any }) {
+      if (everything?.account && everything?.account?.provider == "google") {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACK_URL}/users/register-from-google`,
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/register-from-google`,
           {
             method: "POST",
             headers: {
@@ -81,9 +78,7 @@ export const authOptions = {
             },
             body: JSON.stringify(everything.user),
           }
-        ); 
-      
-    
+        );
       }
       return true;
     },
