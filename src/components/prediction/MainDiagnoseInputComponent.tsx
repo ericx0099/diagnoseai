@@ -3,11 +3,14 @@ import { useTranslation } from "react-i18next";
 import ButtonGetDiagnosis from "@/components/prediction/ButtonGetDiagnosis";
 import { useState } from "react";
 import useApi from "@/hooks/api/useApi";
+import Diagnosis from "@/types/diagnosis/Diagnosis";
+import { useRouter } from "next/router";
 const MainDiagnoseInputComponent = () => {
   const { t } = useTranslation();
   const [symptoms, setSymptoms] = useState<string>("");
   const toast = useToast();
   const {post} = useApi();
+  const router = useRouter();
   const sendSymptoms = async () => {
     if (!(symptoms.trim().length > 0)) {
       return toast({
@@ -18,7 +21,12 @@ const MainDiagnoseInputComponent = () => {
         isClosable: true,
       });
     }
-    const response = await post("/diagnosis",{symptoms});
+    const response = await post<Diagnosis>("/diagnosis",{symptoms});
+    if(response?.success){
+        router.push(`/answer/${response.data.uuid}`)
+    }
+
+    
 
 
   };

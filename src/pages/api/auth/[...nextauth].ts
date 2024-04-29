@@ -4,6 +4,10 @@ import { JWT, JWTEncodeParams } from "next-auth/jwt";
 import jwt from "jsonwebtoken";
 import { Account } from "next-auth";
 
+enum SAMESITE {
+  LAX= "lax"
+}
+
 const JWT_SECRET = process.env.NEXT_PRIVATE_JWT_SECRET!;
 export const authOptions = {
   providers: [
@@ -17,7 +21,7 @@ export const authOptions = {
       name: `next-auth.session-token`,
       options: {
         httpOnly: false,
-        sameSite: "lax",
+        sameSite: SAMESITE.LAX,
         path: "/",
         secure: true,
         maxAge: 3600 * 12,
