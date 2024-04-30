@@ -29,16 +29,18 @@ export default function Nav({ user }: { user: User | null }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box
-        bg={useColorModeValue("white", "gray.700")}
-        px={4}
-        mt={5}
-        mx={{ base: 5, md: 200 }}
-        borderRadius={"30px"}
-        border={"1px solid #3af05e"}
-        boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px;"}
-      >
-        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
+      <Box pt={5} display={"flex"} justifyContent={"center"}>
+        <Flex
+          bg={useColorModeValue("white", "gray.700")}
+          h={16}
+          px={4}
+          alignItems={"center"}
+          justifyContent={"space-between"}
+          maxW={"6xl"}
+          minW={{ base: "100%", lg: "6xl" }}
+          borderRadius={"30px"}
+          boxShadow={" rgba(58, 240, 94, 0.5) 0px 10px 36px 0px,rgba(58, 240, 94, 0.5) 0px 0px 0px 1px;"}
+        >
           <Box>{APP_NAME}</Box>
 
           <Flex alignItems={"center"}>
