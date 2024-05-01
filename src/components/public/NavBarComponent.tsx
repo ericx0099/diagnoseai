@@ -39,7 +39,6 @@ export default function Nav({ user }: { user: User | null }) {
           maxW={"6xl"}
           minW={{ base: "100%", lg: "6xl" }}
           borderRadius={"30px"}
-          boxShadow={" rgba(58, 240, 94, 0.5) 0px 10px 36px 0px,rgba(58, 240, 94, 0.5) 0px 0px 0px 1px;"}
         >
           <Box>{APP_NAME}</Box>
 

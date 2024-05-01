@@ -7,10 +7,12 @@ import useApi from "@/hooks/api/useApi";
 import AppContainer from "@/components/app/AppContainer";
 import AppLayout from "@/components/app/AppLayout";
 import { useTranslation } from "react-i18next";
+import Diagnosis from "@/types/diagnosis/Diagnosis";
+import DiagnosisQuestionsComponent from "@/components/questions/DiagnosisQuestionsComponent/DiagnosisQuestions.component";
 import { Text } from "@chakra-ui/react";
 export default function AnswerDiagnosePage({ user, uuid }: PageProps) {
   const { get } = useApi();
-  const [diagnosis, setDiagnosis] = useState<Diagnosis>();
+  const [diagnosis, setDiagnosis] = useState<Diagnosis | null>(null);
   useEffect(() => {
     (async () => {
       const response = await get<Diagnosis>(`/diagnosis/${uuid}`);
@@ -21,12 +23,17 @@ export default function AnswerDiagnosePage({ user, uuid }: PageProps) {
   }, [uuid]);
   return (
     <AppLayout user={user}>
-      
-        <Text>
-          <Text as="span" mr={3}>Symptoms:</Text>
-          {diagnosis?.symptoms}
+      <Text>
+        <Text as="span" mr={3}>
+          Symptoms:
         </Text>
-    
+        {diagnosis?.symptoms}
+      </Text>
+      {diagnosis ? (
+        <DiagnosisQuestionsComponent diagnosisData={diagnosis} />
+      ) : (
+        <Text>Loading...</Text>
+      )}
     </AppLayout>
   );
 }
@@ -40,7 +47,6 @@ import {
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import User from "@/types/user/User";
-import Diagnosis from "@/types/diagnosis/Diagnosis";
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext

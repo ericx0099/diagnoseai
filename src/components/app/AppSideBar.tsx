@@ -40,7 +40,7 @@ const Sidebar = ({ onClose, ...rest }: any) => {
       display={"flex"}
       zIndex={99999999}
     >
-      <Card borderRadius={30} shadow={"xl"} boxShadow={" rgba(58, 240, 94, 0.5) 0px 5px 36px 0px,rgba(58, 240, 94, 0.5) 0px 0px 0px 1px;"}>
+      <Card borderRadius={30} shadow={"xl"} >
 
         {LinkItems.map((item, index) => {
           return (
