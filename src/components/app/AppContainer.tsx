@@ -5,7 +5,7 @@ interface Props {
   maxW?: string;
 }
 const AppContainer = ({ children, maxW, ...rest }: Props) => {
-  return <Container {...rest} maxW={maxW ? maxW : "6xl"} >{children}</Container>;
+  return <Container {...rest} maxW={maxW ? maxW : "auto"} >{children}</Container>;
 };
 
 export default AppContainer;

@@ -8,7 +8,8 @@ import i18next from "i18next";
 import common_en from "@/locales/en";
 import common_es from "@/locales/es";
 import { AuthProvider } from "@/utils/Providers";
-
+import theme from "@/lib/theme"
+import Fonts from "@/components/shared/Fonts";
 const progress = new ProgressBar({
   size: 6,
   color: "#52f716",
@@ -31,7 +32,8 @@ i18next.init({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <AuthProvider>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
+        <Fonts />
         <I18nextProvider i18n={i18next}>
           <Component {...pageProps} />
         </I18nextProvider>

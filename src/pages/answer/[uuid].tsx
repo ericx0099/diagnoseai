@@ -13,6 +13,7 @@ import { Text } from "@chakra-ui/react";
 export default function AnswerDiagnosePage({ user, uuid }: PageProps) {
   const { get } = useApi();
   const [diagnosis, setDiagnosis] = useState<Diagnosis | null>(null);
+  const { t } = useTranslation();
   useEffect(() => {
     (async () => {
       const response = await get<Diagnosis>(`/diagnosis/${uuid}`);
@@ -23,11 +24,16 @@ export default function AnswerDiagnosePage({ user, uuid }: PageProps) {
   }, [uuid]);
   return (
     <AppLayout user={user}>
-      <Text>
-        <Text as="span" mr={3}>
-          Symptoms:
+      <Text as={"h1"} color={"brand.300"} fontSize={"3xl"}>
+        {t("diagnosis:answer_questions")}
+      </Text>
+      <Text color={"brand.400"}>{t("diagnosis:anwer_the_questions")}</Text>
+      <Text as="h1" mr={3} mt={5} fontWeight={"bold"}>
+        <Text as={"span"} fontSize={"xl"} >
+          {" "}
+          {t("diagnosis:initial_symptoms")}:
         </Text>
-        {diagnosis?.symptoms}
+        <Text as="span" color={"brand.100"} > {diagnosis?.symptoms}</Text>
       </Text>
       {diagnosis ? (
         <DiagnosisQuestionsComponent diagnosisData={diagnosis} />

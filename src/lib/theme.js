@@ -43,27 +43,27 @@ const components = {
 }
 
 const fonts = {
-  //heading: "'M PLUS Rounded 1c'"
+  "body": "Montserrat, sans serif"
 }
 
 const colors = {
   grassTeal: '#88ccca',
   brand: {
-      50: '#3af05e',
-      100: '#3af05e',
-      200: '#3af05e',
-      300: '#3af05e',
-      400: '#3af05e',
-      500: '#3af05e',
-      600: '#3af05e',
-      700: '#3af05e',
-      800: '#3af05e',
-      900: '#3af05e',
+      50: '#348f6c',
+      100: '#348f6c',
+      200: '#348f6c',
+      300: '#348f6c',
+      400: '#348f6c',
+      500: '#348f6c',
+      600: '#348f6c',
+      700: '#348f6c',
+      800: '#348f6c',
+      900: '#348f6c',
   }
 }
 
 const config = {
-  initialColorMode: 'dark',
+  initialColorMode: 'light',
   useSystemColorMode: true,
 }
 

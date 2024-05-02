@@ -6,6 +6,7 @@ import {
   useColorModeValue,
   Text,
   Card,
+  Divider,
 } from "@chakra-ui/react";
 import { FaUserAlt } from "react-icons/fa";
 import NextLink from "next/link";
@@ -16,6 +17,7 @@ import { BsRobot } from "react-icons/bs";
 import { GiMoneyStack, GiArtificialIntelligence } from "react-icons/gi";
 import { useTranslation } from "react-i18next";
 import SideBarItem from "./SidebarItem";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 const Sidebar = ({ onClose, ...rest }: any) => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -31,25 +33,16 @@ const Sidebar = ({ onClose, ...rest }: any) => {
   ];
 
   return (
-    <Box
-      transition="3s ease"
-      pos="fixed"
-      h="90vh"
-      {...rest}
-      paddingBottom={25}
-      display={"flex"}
-      zIndex={99999999}
-    >
-      <Card borderRadius={30} shadow={"xl"} >
-
+    <Box transition="3s ease"  zIndex={99999999} minW={"10vw"}>
+      <Text color={"white"} fontWeight={"bold"} textAlign={"center"} mt={5}>{APP_NAME}</Text>
+      <Box height="100%" mt={10}>
         {LinkItems.map((item, index) => {
           return (
             <SideBarItem
               key={index}
               path={item.path}
               icon={item.icon}
-              color={"black"}
-              bg={"white"}
+           
             >
               {item.name}
             </SideBarItem>
@@ -60,7 +53,7 @@ const Sidebar = ({ onClose, ...rest }: any) => {
             Users
           </SideBarItem>
         )}
-      </Card>
+      </Box>
     </Box>
   );
 };
