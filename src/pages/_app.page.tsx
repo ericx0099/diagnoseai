@@ -12,7 +12,7 @@ import theme from "@/lib/theme"
 import Fonts from "@/components/shared/Fonts";
 const progress = new ProgressBar({
   size: 6,
-  color: "#52f716",
+  color: "#348f6c",
   className: "z-50",
   delay: 100,
 });

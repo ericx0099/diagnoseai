@@ -1,8 +1,20 @@
-import { Box, Button, Card, Flex, Text, Textarea } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Card,
+  Flex,
+  Icon,
+  Text,
+  Textarea,
+} from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { DiagnosisQuestions } from "@/types/diagnosis/Diagnosis";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { MdArrowBackIos } from "react-icons/md";
+import { IoIosSend } from "react-icons/io";
+import { MdArrowForwardIos } from "react-icons/md";
+import { MdSkipNext } from "react-icons/md";
 interface QuestionProps {
   questionData: DiagnosisQuestions;
   onNext: () => void;
@@ -10,6 +22,8 @@ interface QuestionProps {
   onSkip: () => void;
   updateAnswer: (index: number, answer: string | null) => void;
   index: number;
+  displayFinishButton?: boolean;
+  onFinish: () => void;
 }
 const variants = {
   hidden: { opacity: 0, x: 0, y: 20 },
@@ -23,6 +37,8 @@ const Question: React.FC<QuestionProps> = ({
   onSkip,
   updateAnswer,
   index,
+  displayFinishButton,
+  onFinish
 }) => {
   const [answer, setAnswer] = useState<string | null>(questionData.answer);
   const { t } = useTranslation();
@@ -59,16 +75,40 @@ const Question: React.FC<QuestionProps> = ({
           borderColor={"brand.100"}
         />
         <Flex justifyContent={"space-between"}>
-          <Button colorScheme="red" onClick={onBack}>
+          <Button
+            colorScheme="red"
+            leftIcon={<Icon as={MdArrowBackIos} />}
+            onClick={onBack}
+          >
             {t("diagnosis:back")}
           </Button>
           <Box>
-            <Button onClick={onSkip} mr={1} colorScheme="blue">
+            <Button
+              rightIcon={<Icon as={MdSkipNext} />}
+              onClick={onSkip}
+              mr={1}
+              colorScheme="blue"
+            >
               {t("diagnosis:ommit")}
             </Button>
-            <Button onClick={onNext} colorScheme="green">
+            <Button
+              rightIcon={<Icon as={MdArrowForwardIos} />}
+              onClick={onNext}
+              colorScheme="green"
+            >
               {t("diagnosis:next")}
             </Button>
+            {displayFinishButton && (
+              <Button
+                variant={"outline"}
+                rightIcon={<Icon as={IoIosSend} />}
+                onClick={onFinish}
+                ml={1}
+                colorScheme="green"
+              >
+                {t("diagnosis:finish")}
+              </Button>
+            )}
           </Box>
         </Flex>
       </Card>

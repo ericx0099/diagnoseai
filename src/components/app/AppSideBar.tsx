@@ -23,15 +23,17 @@ const Sidebar = ({ onClose, ...rest }: any) => {
   const router = useRouter();
   const { user } = rest;
 
+
   const LinkItems = [
     {
       name: t("app:my_diagnoses"),
       icon: BsRobot,
       path: "/my-diagnoses",
       keyPath: "my-diagnoses",
+      paths: ["/my-diagnoses","/my-diagnoses/[uuid]","/my-diagnoses/[uuid]/answer"]
     },
   ];
-
+  console.log(router.pathname)
   return (
     <Box transition="3s ease"  zIndex={99999999} minW={"10vw"}>
       <Text color={"white"} fontWeight={"bold"} textAlign={"center"} mt={5}>{APP_NAME}</Text>
@@ -42,7 +44,7 @@ const Sidebar = ({ onClose, ...rest }: any) => {
               key={index}
               path={item.path}
               icon={item.icon}
-           
+              active={item.paths.includes(router.pathname)}
             >
               {item.name}
             </SideBarItem>

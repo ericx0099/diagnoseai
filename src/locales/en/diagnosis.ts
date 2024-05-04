@@ -4,10 +4,12 @@ const diagnosis = {
   anwer_the_questions:
     "Before obtaining a diagnosis, answer the following questions..",
   back: "Back",
-  ommit:"Skip",
+  ommit: "Skip",
   next: "Next",
   question: "Question",
   initial_symptoms: "Initial Symptoms",
-  explain_yourself: "Your Answer (Optional)"
+  explain_yourself: "Your Answer (Optional)",
+  finish: "Finish",
+  your_diagnoses: "Your Diagnoses"
 };
 export default diagnosis;

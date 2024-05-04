@@ -55,8 +55,11 @@ const DiagnosisQuestionsComponent: React.FC<DiagnosisQuestionsProps> = ({
     const response = await post("/diagnosis/update-answer", toPost);
   };
 
+  const handleFinish = async () => {
+    const response = await post(`/diagnosis/${diagnosis.uuid}/generate-diagnosis`);
+  }
   return (
-    <Box>
+    <Box >
       <Text textAlign={"center"} as={"span"}>
         {t("diagnosis:question")}{" "}
         <Text as={"span"} color={"brand.100"}>
@@ -67,7 +70,7 @@ const DiagnosisQuestionsComponent: React.FC<DiagnosisQuestionsProps> = ({
           {diagnosis.questions.length}
         </Text>
       </Text>
-      
+      <Box mb={5} />
       {diagnosis.questions.map((questionData, index) => {
         if (index === currentQuestionIndex) {
           return (
@@ -79,6 +82,8 @@ const DiagnosisQuestionsComponent: React.FC<DiagnosisQuestionsProps> = ({
               index={index}
               onSkip={handleSkip}
               updateAnswer={updateAnswer}
+              displayFinishButton={(index + 1 ) === diagnosis.questions.length}
+              onFinish={handleFinish}
             />
           );
         }

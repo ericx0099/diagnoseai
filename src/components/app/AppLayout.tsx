@@ -17,17 +17,25 @@ const AppLayout = ({ user, children }: PublicLayoutProps) => {
       display={"flex"}
       justifyContent={"center"}
       alignItems={"center"}
-      
+      overflow={"hidden"}
     >
-      <Box p={5} h={"95%"} w={{ base: "98%", lg: "85%" }}  display={"flex"}
-      justifyContent={"center"}
-      alignItems={"center"}>
+      <Box
+        overflow={"hidden"}
+        h={"99%"}
+        w={{ base: "98%", lg: "85%" }}
+        display={"flex"}
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
         <Box
           bg={"brand.100"}
+          overflow={"hidden"}
           h={"93%"}
           w={"93%"}
           borderRadius={20}
-          boxShadow={"rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;"}
+          boxShadow={
+          " rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;"
+          }
         >
           <Box p={3} h={"100%"}>
             <Box display={"flex"} h={"100%"}>
@@ -37,7 +45,7 @@ const AppLayout = ({ user, children }: PublicLayoutProps) => {
                 h="100%"
                 w={"100%"}
                 p={5}
-                bg="#F8F8F8"
+                bg="white"
                 borderRadius={20}
                 shadow={"xl"}
               >

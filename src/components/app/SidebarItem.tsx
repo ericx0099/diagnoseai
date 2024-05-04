@@ -1,7 +1,8 @@
 import NextLink from "next/link";
 import { Icon, Flex, Box } from "@chakra-ui/react";
 
-const SideBarItem = ({ icon, path, children, ...rest }: any) => {
+
+const SideBarItem = ({ icon, path, children,active, ...rest }: any) => {
   return (
     <NextLink href={path} style={{ textDecoration: "none" }}>
       <Box
@@ -9,12 +10,14 @@ const SideBarItem = ({ icon, path, children, ...rest }: any) => {
         p="4"
         role="group"
         cursor="pointer"
-        color="black"
-        bg={"#F8F8F8"}
+        color={active ? "black" : "white"}
+        bg={active ? "white": "brand.100"}
+        className="hover:font-bold transition ease-in-out"
+  
         display={"block"}
         borderLeftRadius={"50"}
         position={"relative"}
-        _before={{
+        _before={active ? {
           content: '""',
           position: "absolute",
           top: "-30px",
@@ -23,9 +26,9 @@ const SideBarItem = ({ icon, path, children, ...rest }: any) => {
           height: "30px",
           background: "brand.100",
           borderRadius: "50%",
-          boxShadow: "15px 15px 0 #F8F8F8",
-        }}
-        _after={{
+          boxShadow: "15px 15px 0 white",
+        } : {}}
+        _after={active ? {
           content: '""',
           position: "absolute",
           bottom: "-30px",
@@ -34,8 +37,8 @@ const SideBarItem = ({ icon, path, children, ...rest }: any) => {
           height: "30px",
           background: "brand.100",
           borderRadius: "50%",
-          boxShadow: "15px -15px 0 #F8F8F8",
-        }}
+          boxShadow: "15px -15px 0 white",
+        }: {}}
         {...rest}
       >
         {icon && (
@@ -43,7 +46,8 @@ const SideBarItem = ({ icon, path, children, ...rest }: any) => {
             mr="4"
             fontSize="16"
             _groupHover={{
-              color: "white",
+              color: "black",
+              fontWeight: "bold"
             }}
             as={icon}
           />

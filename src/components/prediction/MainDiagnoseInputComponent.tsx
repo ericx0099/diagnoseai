@@ -12,7 +12,7 @@ const MainDiagnoseInputComponent = () => {
   const {post} = useApi();
   const router = useRouter();
   const sendSymptoms = async () => {
-    if (!(symptoms.trim().length > 0)) {
+    if (!(symptoms?.trim()?.length > 0)) {
       return toast({
         title: t("global:warning"),
         description: t("diagnosis:no_symptoms"),
@@ -23,7 +23,7 @@ const MainDiagnoseInputComponent = () => {
     }
     const response = await post<Diagnosis>("/diagnosis",{symptoms});
     if(response?.success){
-        router.push(`/answer/${response.data.uuid}`)
+        router.push(`/my-diagnoses/${response.data.uuid}/answer`)
     }
 
     
@@ -38,7 +38,7 @@ const MainDiagnoseInputComponent = () => {
         borderRadius={"30px"}
         padding={4}
         value={symptoms}
-        onChange={(e) => setSymptoms(e.target.value)}
+        onChange={(e) => setSymptoms(e.target.value??'')}
         boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px;"}
       />
       <ButtonGetDiagnosis callback={sendSymptoms} />
