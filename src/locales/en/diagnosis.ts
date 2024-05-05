@@ -10,6 +10,11 @@ const diagnosis = {
   initial_symptoms: "Initial Symptoms",
   explain_yourself: "Your Answer (Optional)",
   finish: "Finish",
-  your_diagnoses: "Your Diagnoses"
+  your_diagnoses: "Your Diagnoses",
+  symptoms: "Symptoms",
+  health_issue: "Health Issue",
+  problem_description: "Problem description",
+  help_recomendations: "Help recomendations",
+  my_diagnoses: "My Diagnoses"
 };
 export default diagnosis;

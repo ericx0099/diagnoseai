@@ -1,8 +1,7 @@
 import NextLink from "next/link";
 import { Icon, Flex, Box } from "@chakra-ui/react";
 
-
-const SideBarItem = ({ icon, path, children,active, ...rest }: any) => {
+const SideBarItem = ({ icon, path, children, active, ...rest }: any) => {
   return (
     <NextLink href={path} style={{ textDecoration: "none" }}>
       <Box
@@ -11,48 +10,57 @@ const SideBarItem = ({ icon, path, children,active, ...rest }: any) => {
         role="group"
         cursor="pointer"
         color={active ? "black" : "white"}
-        bg={active ? "white": "brand.100"}
+        bg={active ? "white" : "brand.100"}
         className="hover:font-bold transition ease-in-out"
-  
         display={"block"}
         borderLeftRadius={"50"}
         position={"relative"}
-        _before={active ? {
-          content: '""',
-          position: "absolute",
-          top: "-30px",
-          right: "0",
-          width: "30px",
-          height: "30px",
-          background: "brand.100",
-          borderRadius: "50%",
-          boxShadow: "15px 15px 0 white",
-        } : {}}
-        _after={active ? {
-          content: '""',
-          position: "absolute",
-          bottom: "-30px",
-          right: "0",
-          width: "30px",
-          height: "30px",
-          background: "brand.100",
-          borderRadius: "50%",
-          boxShadow: "15px -15px 0 white",
-        }: {}}
+        _before={
+          active
+            ? {
+                content: '""',
+                position: "absolute",
+                top: "-30px",
+                right: "0",
+                width: "30px",
+                height: "30px",
+                background: "brand.100",
+                borderRadius: "50%",
+                boxShadow: "15px 15px 0 white",
+              }
+            : {}
+        }
+        _after={
+          active
+            ? {
+                content: '""',
+                position: "absolute",
+                bottom: "-30px",
+                right: "0",
+                width: "30px",
+                height: "30px",
+                background: "brand.100",
+                borderRadius: "50%",
+                boxShadow: "15px -15px 0 white",
+              }
+            : {}
+        }
         {...rest}
       >
         {icon && (
           <Icon
             mr="4"
-            fontSize="16"
+            fontSize="26"
             _groupHover={{
               color: "black",
-              fontWeight: "bold"
+              fontWeight: "bold",
             }}
             as={icon}
           />
         )}
-        {children}
+       <Box display={{base:"none",lg:"inline-block"}}>
+       {children}
+       </Box>
       </Box>
     </NextLink>
   );

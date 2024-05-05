@@ -8,47 +8,28 @@ import Nav from "./NavBar";
 const AppLayout = ({ user, children }: PublicLayoutProps) => {
   const { isMobile } = useWindow();
   return (
-    <Box
-      bg={"#f5ead7"}
-      h={"100vh"}
-      w={"100vw"}
-      maxW={"100vw !important"}
-      maxH={"100vh !important"}
-      display={"flex"}
-      justifyContent={"center"}
-      alignItems={"center"}
-      overflow={"hidden"}
-    >
+    <Box bg={"white"}>
       <Box
         overflow={"hidden"}
-        h={"99%"}
-        w={{ base: "98%", lg: "85%" }}
         display={"flex"}
         justifyContent={"center"}
         alignItems={"center"}
+        height={"100vh"}
       >
         <Box
           bg={"brand.100"}
           overflow={"hidden"}
-          h={"93%"}
-          w={"93%"}
+          m={2}
+          boxShadow={" rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"}
           borderRadius={20}
-          boxShadow={
-          " rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;"
-          }
+    
+          height={"98vh"}
         >
           <Box p={3} h={"100%"}>
             <Box display={"flex"} h={"100%"}>
-              {!isMobile && <Sidebar />}
+               <Sidebar />
 
-              <Box
-                h="100%"
-                w={"100%"}
-                p={5}
-                bg="white"
-                borderRadius={20}
-                shadow={"xl"}
-              >
+              <Box p={5} bg="white" borderRadius={20} shadow={"xl"} w={"98vw"}>
                 <Nav user={user} />
                 {children}
               </Box>

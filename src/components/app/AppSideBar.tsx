@@ -14,7 +14,7 @@ import { useRouter } from "next/router";
 
 import { BsFillPinMapFill } from "react-icons/bs";
 import { BsRobot } from "react-icons/bs";
-import { GiMoneyStack, GiArtificialIntelligence } from "react-icons/gi";
+import { TbHealthRecognition } from "react-icons/tb";
 import { useTranslation } from "react-i18next";
 import SideBarItem from "./SidebarItem";
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
@@ -26,8 +26,8 @@ const Sidebar = ({ onClose, ...rest }: any) => {
 
   const LinkItems = [
     {
-      name: t("app:my_diagnoses"),
-      icon: BsRobot,
+      name: t("diagnosis:my_diagnoses"),
+      icon: TbHealthRecognition,
       path: "/my-diagnoses",
       keyPath: "my-diagnoses",
       paths: ["/my-diagnoses","/my-diagnoses/[uuid]","/my-diagnoses/[uuid]/answer"]
@@ -36,8 +36,8 @@ const Sidebar = ({ onClose, ...rest }: any) => {
   console.log(router.pathname)
   return (
     <Box transition="3s ease"  zIndex={99999999} minW={"10vw"}>
-      <Text color={"white"} fontWeight={"bold"} textAlign={"center"} mt={5}>{APP_NAME}</Text>
-      <Box height="100%" mt={10}>
+      <Text color={"white"} fontWeight={"bold"} textAlign={"center"} mt={5} display={{base:"none",lg:"inline-block"}}>{APP_NAME}</Text>
+      <Box height="100%" mt={{base:24,lg:10}}>
         {LinkItems.map((item, index) => {
           return (
             <SideBarItem

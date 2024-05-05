@@ -1,4 +1,5 @@
 import User from "@/types/user/User";
+import ThemeToggleButton from "../public/ThemeToggleButton";
 import {
   Box,
   Flex,
@@ -36,7 +37,9 @@ export default function Nav({ user }: { user: User | null }) {
           justifyContent={"space-between"}
           w={"100%"}
         >
-          <Box></Box>
+          <Box>
+            <Text display={{base:"inline-block",lg:"none"}}>{APP_NAME}</Text>
+          </Box>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
