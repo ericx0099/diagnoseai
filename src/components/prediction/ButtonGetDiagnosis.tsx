@@ -8,9 +8,10 @@ import { useSession } from "next-auth/react";
 
 interface Props {
   callback: () => void;
+  isLoading: boolean;
 }
 
-const ButtonGetDiagnosis = ({ callback }: Props) => {
+const ButtonGetDiagnosis = ({ callback, isLoading }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { data: session, status } = useSession();
 
@@ -27,7 +28,7 @@ const ButtonGetDiagnosis = ({ callback }: Props) => {
   const { t } = useTranslation();
   return (
     <>
-      <Button colorScheme={"green"} onClick={handleClick}>
+      <Button colorScheme={"green"} onClick={handleClick} isLoading={isLoading} loadingText={t("global:obtaining_diagnosis")}>
         {t("global:get_diagnosis")} <Icon ml={2} as={BsStars} />
       </Button>
 

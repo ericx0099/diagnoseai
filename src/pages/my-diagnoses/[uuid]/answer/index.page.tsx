@@ -7,9 +7,10 @@ interface PageProps {
   import AppContainer from "@/components/app/AppContainer";
   import AppLayout from "@/components/app/AppLayout";
   import { useTranslation } from "react-i18next";
+  import { RiMentalHealthLine } from "react-icons/ri";
   import Diagnosis from "@/types/diagnosis/Diagnosis";
   import DiagnosisQuestionsComponent from "@/components/questions/DiagnosisQuestionsComponent/DiagnosisQuestions.component";
-  import { Text } from "@chakra-ui/react";
+  import { Text, Card, CardHeader, Icon, Divider, CardBody } from "@chakra-ui/react";
   export default function AnswerDiagnosePage({ user, uuid }: PageProps) {
     const { get } = useApi();
     const [diagnosis, setDiagnosis] = useState<Diagnosis | null>(null);
@@ -24,17 +25,23 @@ interface PageProps {
     }, [uuid]);
     return (
       <AppLayout user={user}>
-        <Text as={"h1"} color={"brand.300"} fontSize={"3xl"}>
+              <Text as={"h1"} color={"brand.300"} fontSize={"3xl"}>
           {t("diagnosis:answer_questions")}
         </Text>
-        <Text color={"brand.400"}>{t("diagnosis:anwer_the_questions")}</Text>
-        <Text as="h1" mr={3} my={5} fontWeight={"bold"}>
-          <Text as={"span"} fontSize={"xl"} >
-            {" "}
-            {t("diagnosis:initial_symptoms")}:
-          </Text>
-          <Text as="span" color={"brand.100"} > {diagnosis?.symptoms}</Text>
-        </Text>
+        <Card variant={"outline"} w={"100%"} my={3}>
+          <CardHeader>
+            <Text fontWeight={"bold"} color={"brand.100"}>
+              <Icon as={RiMentalHealthLine} />
+              {t("diagnosis:initial_symptoms")}
+            </Text>
+          </CardHeader>
+          <Divider />
+          <CardBody>
+            <Text>{diagnosis?.symptoms}</Text>
+          </CardBody>
+        </Card>
+
+        <Text mb={4} color={"brand.400"}>{t("diagnosis:anwer_the_questions")}</Text>
         {diagnosis ? (
           <DiagnosisQuestionsComponent diagnosisData={diagnosis} />
         ) : (

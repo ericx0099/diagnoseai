@@ -5,8 +5,10 @@ import AppContainer from "./AppContainer";
 import Sidebar from "./AppSideBar";
 import useWindow from "@/hooks/window/useWindow";
 import Nav from "./NavBar";
+import { useTranslation } from "react-i18next";
 const AppLayout = ({ user, children }: PublicLayoutProps) => {
   const { isMobile } = useWindow();
+
   return (
     <Box bg={"white"}>
       <Box
@@ -29,10 +31,10 @@ const AppLayout = ({ user, children }: PublicLayoutProps) => {
             <Box display={"flex"} h={"100%"}>
                <Sidebar />
 
-              <Box p={5} bg="white" borderRadius={20} shadow={"xl"} w={"98vw"}>
+              <Card p={5} borderRadius={20} shadow={"xl"} w={"98vw"} maxH={"95vh"} overflow={"scroll"} overflowX={"hidden"} >
                 <Nav user={user} />
                 {children}
-              </Box>
+              </Card>
             </Box>
           </Box>
         </Box>

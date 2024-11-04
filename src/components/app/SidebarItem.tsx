@@ -1,18 +1,22 @@
 import NextLink from "next/link";
-import { Icon, Flex, Box } from "@chakra-ui/react";
-
+import { Icon, Flex, Box, Card } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 const SideBarItem = ({ icon, path, children, active, ...rest }: any) => {
   return (
     <NextLink href={path} style={{ textDecoration: "none" }}>
-      <Box
+      <Card
+        mb={10}
         align="center"
+        boxShadow={"none"}
         p="4"
+        bg={active ? '' : "brand.100"}
         role="group"
         cursor="pointer"
-        color={active ? "black" : "white"}
-        bg={active ? "white" : "brand.100"}
         className="hover:font-bold transition ease-in-out"
         display={"block"}
+        _hover={{
+          bg:useColorModeValue("#FFFFFF","#2D3748",)
+        }}
         borderLeftRadius={"50"}
         position={"relative"}
         _before={
@@ -26,7 +30,10 @@ const SideBarItem = ({ icon, path, children, active, ...rest }: any) => {
                 height: "30px",
                 background: "brand.100",
                 borderRadius: "50%",
-                boxShadow: "15px 15px 0 white",
+                boxShadow: useColorModeValue(
+                  "15px 15px 0 #FFFFFF",
+                  "15px 15px 0 #2D3748"
+                ),
               }
             : {}
         }
@@ -41,7 +48,10 @@ const SideBarItem = ({ icon, path, children, active, ...rest }: any) => {
                 height: "30px",
                 background: "brand.100",
                 borderRadius: "50%",
-                boxShadow: "15px -15px 0 white",
+                boxShadow: useColorModeValue(
+                  "15px -15px 0 #FFFFFF",
+                  "15px -15px 0 #2D3748"
+                ),
               }
             : {}
         }
@@ -58,10 +68,8 @@ const SideBarItem = ({ icon, path, children, active, ...rest }: any) => {
             as={icon}
           />
         )}
-       <Box display={{base:"none",lg:"inline-block"}}>
-       {children}
-       </Box>
-      </Box>
+        <Box display={{ base: "none", lg: "inline-block" }} fontWeight={"bold"}>{children}</Box>
+      </Card>
     </NextLink>
   );
 };

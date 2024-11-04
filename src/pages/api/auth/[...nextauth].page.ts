@@ -14,6 +14,7 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.NEXT_PRIVATE_GOOGLE_CLIENT_ID!,
       clientSecret: process.env.NEXT_PRIVATE_GOOGLE_CLIENT_SECRET!,
+      
     }),
   ],
   cookies: {
@@ -58,18 +59,19 @@ export const authOptions = {
 			try {
 				const url = `${BACKEND_URL}/auth/store-session`;
 				await axios.post(url, { jwt: _token });
-			} catch (err) {
+			} catch (err) {NEXT_PUBLIC_BACKEND_URL
 				//console.log(err);
 			}
       */
       return _token;
     },
+    
   },
 
   callbacks: {
-    session({ session, token }: { session: any; token: any }) {
+  /*  session({ session, token }: { session: any; token: any }) {
       return session;
-    },
+    }, */
     async signIn(everything: { account: Account | null; user: any }) {
       if (everything?.account && everything?.account?.provider == "google") {
         const response = await fetch(
@@ -85,6 +87,53 @@ export const authOptions = {
         );
       }
       return true;
+    },
+    async jwt({token, account, profile}: any){
+      if(account && profile){
+        const email = token.email;
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/get-user-language`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              // Add any additional headers as needed
+            },
+            body: JSON.stringify({email}),
+          }
+        );
+        const r = await response.json()
+        let lang = 'en';
+        if(r && r.data){
+          lang = r.data;
+        }
+        token.language = lang;
+      }
+      return token
+    },
+    async session({ session, token, user }: any) {
+      // Add custom properties to the session
+      if (token) {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKEND_URL}/users/get-user-language`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              // Add any additional headers as needed
+            },
+            body: JSON.stringify({email:session.user.email}),
+          }
+        );
+        const r = await response.json()
+        let lang = 'en';
+        if(r && r.data){
+          lang = r.data;
+        }
+        session.user.language = lang;
+
+      }
+      return session;
     },
   },
 };

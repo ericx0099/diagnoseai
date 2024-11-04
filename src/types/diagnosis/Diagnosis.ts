@@ -6,6 +6,7 @@ export default interface Diagnosis {
   health_issue:string;
   help_recomendations:string;
   problem_description:string;
+  created_at: string; // ISO 8601 formatted date string
 }
 
 export interface DiagnosisQuestions {

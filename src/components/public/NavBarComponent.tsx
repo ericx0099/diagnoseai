@@ -17,6 +17,8 @@ import {
   Center,
 } from "@chakra-ui/react";
 import ThemeToggleButton from "./ThemeToggleButton";
+import LaunchAppButton from "../app/LaunchAppButton.component";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   children: React.ReactNode;
@@ -25,12 +27,11 @@ interface Props {
 const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 
 export default function Nav({ user }: { user: User | null }) {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {t} = useTranslation();
   return (
     <>
-      <Box pt={5} display={"flex"} justifyContent={"center"}>
-        <Flex
+      <Box pt={5} display={"flex"} justifyContent={"center"} zIndex={999999999}> 
+        <Flex  zIndex={999999999}
           bg={useColorModeValue("white", "gray.700")}
           h={16}
           px={4}
@@ -39,11 +40,15 @@ export default function Nav({ user }: { user: User | null }) {
           maxW={"6xl"}
           minW={{ base: "100%", lg: "6xl" }}
           borderRadius={"30px"}
+          position={"fixed"}
+          shadow={"2xl"}
+          boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px"}
+          fontWeight={"bold"}
         >
           <Box>{APP_NAME}</Box>
-
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
+            {user && <LaunchAppButton />}
               <ThemeToggleButton />
 
               <Menu>
@@ -68,7 +73,7 @@ export default function Nav({ user }: { user: User | null }) {
                     <br />
                     <Center>
                       <Avatar
-                        size={"2xl"}
+                        size={"md"}
                         src={
                           user.image
                             ? user.image
@@ -76,16 +81,12 @@ export default function Nav({ user }: { user: User | null }) {
                         }
                       />
                     </Center>
-                    <br />
-                    <Center>
-                      <p>
-                        {user.name} - {user.email}
-                      </p>
-                    </Center>
-                    <br />
+                    <MenuItem>{t('global:profile')}</MenuItem>
+              
+            
                     <MenuDivider />
 
-                    <MenuItem>Logout</MenuItem>
+                    <MenuItem>{t("global:logout")}</MenuItem>
                   </MenuList>
                 )}
               </Menu>

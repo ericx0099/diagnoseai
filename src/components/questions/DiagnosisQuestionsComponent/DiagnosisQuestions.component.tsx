@@ -64,7 +64,7 @@ const DiagnosisQuestionsComponent: React.FC<DiagnosisQuestionsProps> = ({
       `/diagnosis/${diagnosis.uuid}/generate-diagnosis`
     );
     if(response?.success){
-      router.push(`/my-diagnosis/${diagnosis.uuid}`);
+      router.push(`/my-diagnoses/${diagnosis.uuid}`);
     }
   };
   return (

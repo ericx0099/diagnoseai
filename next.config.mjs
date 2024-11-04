@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ["page.tsx","page.ts"],
+  images: {
+    domains: ["lh3.googleusercontent.com"]
+  }
 };
 
 export default nextConfig;

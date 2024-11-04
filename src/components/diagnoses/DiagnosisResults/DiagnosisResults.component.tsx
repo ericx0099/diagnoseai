@@ -11,6 +11,8 @@ import {
 import { useTranslation } from "react-i18next";
 import { GiHealthCapsule } from "react-icons/gi";
 import { RiHealthBookLine } from "react-icons/ri";
+
+
 import { TbFileDescription } from "react-icons/tb";
 interface Props {
   diagnosis: Diagnosis;

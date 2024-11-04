@@ -9,7 +9,7 @@ const MainDiagnoseInputComponent = () => {
   const { t } = useTranslation();
   const [symptoms, setSymptoms] = useState<string>("");
   const toast = useToast();
-  const {post} = useApi();
+  const {post, loading} = useApi();
   const router = useRouter();
   const sendSymptoms = async () => {
     if (!(symptoms?.trim()?.length > 0)) {
@@ -41,7 +41,7 @@ const MainDiagnoseInputComponent = () => {
         onChange={(e) => setSymptoms(e.target.value??'')}
         boxShadow={"rgba(0, 0, 0, 0.35) 0px 5px 15px;"}
       />
-      <ButtonGetDiagnosis callback={sendSymptoms} />
+      <ButtonGetDiagnosis callback={sendSymptoms} isLoading={loading} />
     </>
   );
 };

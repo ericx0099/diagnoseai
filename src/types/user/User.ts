@@ -1,4 +1,5 @@
 import { DefaultUser } from "next-auth";
+import { Language } from "../language/language";
 
 interface User extends DefaultUser {
   user_id: number;
@@ -6,5 +7,7 @@ interface User extends DefaultUser {
   email: string;
   uuid: string;
   active: boolean;
+  image: string;
+  language: string;
 }
 export default User;

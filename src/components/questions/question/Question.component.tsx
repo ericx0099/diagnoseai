@@ -62,7 +62,7 @@ const Question: React.FC<QuestionProps> = ({
       variants={variants}
       transition={{ duration: 0.4, type: "easeInOut" }}
     >
-      <Card p={3} shadow={"md"} border="2px solid white">
+      <Card p={3} shadow={"xl"} variant={"outline"}>
         <Text fontSize={"3xl"} maxH={300} overflow={"auto"} color={"brand.100"}>
           {questionData.question}
         </Text>

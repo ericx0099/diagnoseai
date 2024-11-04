@@ -5,6 +5,7 @@ export default function Home({ user }: { user: User | null }) {
   return (
     <PublicLayout user={user}>
       <CallToActionWithIllustration />
+      <ThreeTierPricing user={user} />
     </PublicLayout>
   );
 }
@@ -17,6 +18,7 @@ import {
 
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/pages/api/auth/[...nextauth].page";
+import ThreeTierPricing from "@/components/shared/Pricing.component";
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {

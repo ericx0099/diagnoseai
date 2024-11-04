@@ -7,9 +7,11 @@ import { I18nextProvider, useTranslation } from "react-i18next";
 import i18next from "i18next";
 import common_en from "@/locales/en";
 import common_es from "@/locales/es";
+import common_ca from "@/locales/ca";
 import { AuthProvider } from "@/utils/Providers";
 import theme from "@/lib/theme"
 import Fonts from "@/components/shared/Fonts";
+import { useEffect } from "react";
 const progress = new ProgressBar({
   size: 6,
   color: "#348f6c",
@@ -27,9 +29,19 @@ i18next.init({
   resources: {
     en: common_en,
     es: common_es,
+    ca: common_ca
   },
 });
 export default function App({ Component, pageProps }: AppProps) {
+  const {i18n} = useTranslation();
+  useEffect(() => {
+    if(pageProps.user){
+      if(pageProps.user.language){
+        i18next.changeLanguage(pageProps.user.language)
+      }
+    }
+  },[])
+
   return (
     <AuthProvider>
       <ChakraProvider theme={theme}>

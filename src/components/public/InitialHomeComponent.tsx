@@ -97,7 +97,7 @@ export default function CallToActionWithIllustration() {
         mb={50}
       >
         {items.map((item, i) => {
-          return <CardInformation key={i} {...item} />;
+          return <CardInformation key={i} src={item.src} title={t(`public_pages:card${i+1}_title`)} description={t(`public_pages:card${i+1}_desc`)} />;
         })}
       </Grid>
     </>
