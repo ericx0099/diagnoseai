@@ -67,7 +67,7 @@ export default function CallToActionWithIllustration() {
   const { t } = useTranslation();
   return (
     <>
-      <Container maxW={"5xl"}>
+      <Container maxW={"5xl"} >
         <Stack
           textAlign={"center"}
           align={"center"}
@@ -92,6 +92,7 @@ export default function CallToActionWithIllustration() {
       </Container>
       <Grid
         w={"100%"}
+        p={5}
         gridTemplateColumns={{ base: "1fr", md: "1fr 1fr 1fr 1fr" }}
         gridGap={10}
         mb={50}

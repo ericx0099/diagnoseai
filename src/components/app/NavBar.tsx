@@ -22,6 +22,9 @@ import { signOut } from "next-auth/react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 import LaunchAppButton from "./LaunchAppButton.component";
+import { useUserData } from "@/contexts/UserDataContext";
+import AvailableDiagnostics from "../diagnoses/AvailableDiagnoses/AvailableDiagnostics.component";
+import AvailableAITokens from "../diagnoses/AvailableAiTokens/AvailableAiTokens.component";
 interface Props {
   children: React.ReactNode;
 }
@@ -31,6 +34,7 @@ const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME;
 export default function Nav({ user }: { user: User | null }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { diagnoses, aiTokens } = useUserData();
   const router = useRouter();
   const { t } = useTranslation();
   return (
@@ -41,16 +45,21 @@ export default function Nav({ user }: { user: User | null }) {
           alignItems={"center"}
           justifyContent={"space-between"}
           w={"100%"}
-          
         >
           <Box>
-            <Text display={{ base: "inline-block", lg: "none" }} fontWeight={"bold"}>
+            <Text
+              display={{ base: "inline-block", lg: "none" }}
+              fontWeight={"bold"}
+            >
               {APP_NAME}
             </Text>
+            <Flex gap={4}>
+              <AvailableDiagnostics number={diagnoses} />
+              <AvailableAITokens number={aiTokens} />
+            </Flex>
           </Box>
 
           <Flex alignItems={"center"}>
-       
             <ThemeToggleButton />
             <Stack direction={"row"} ml={2} spacing={7}>
               <Menu>
@@ -91,6 +100,7 @@ export default function Nav({ user }: { user: User | null }) {
                     </Center>
                     <br />
                     <MenuDivider />
+
                     <MenuItem
                       onClick={() => {
                         router.push("/profile");

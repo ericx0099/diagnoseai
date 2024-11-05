@@ -9,7 +9,10 @@ const public_pages = {
     card3_desc: "La seguretat és la nostra prioritat. Protegim les teves dades de salut amb xifrat avançat perquè puguis explorar sense preocupacions.",
 
     card4_title: "Consells Personalitzats i Properes Passes",
-    card4_desc: " No només t’oferim respostes, també et proporcionem recomanacions de cura i opcions de contacte amb professionals si ho necessites."
+    card4_desc: " No només t’oferim respostes, també et proporcionem recomanacions de cura i opcions de contacte amb professionals si ho necessites.",
+
+
+    get_diagnosed_with_ai: "El teu diagnòstic amb IA"
 
 
 }

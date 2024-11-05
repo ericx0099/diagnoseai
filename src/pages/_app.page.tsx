@@ -25,7 +25,8 @@ Router.events.on("routeChangeError", progress.finish);
 
 i18next.init({
   interpolation: { escapeValue: false },
-  lng: "en",
+  lng: "ca",
+  fallbackLng: "ca",
   resources: {
     en: common_en,
     es: common_es,

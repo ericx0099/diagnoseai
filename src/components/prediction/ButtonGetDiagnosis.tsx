@@ -4,6 +4,7 @@ import { BsStars } from "react-icons/bs";
 import AuthPopupComponent from "../auth/AuthPopupComponent";
 import { useTranslation } from "react-i18next";
 import { useSession } from "next-auth/react";
+import { useUserData } from "@/contexts/UserDataContext";
 
 
 interface Props {
@@ -16,8 +17,12 @@ const ButtonGetDiagnosis = ({ callback, isLoading }: Props) => {
   const { data: session, status } = useSession();
 
 
+
   const handleClick = () => {
+    
     if (session && session.user) {
+   
+  
       //DO STUFF
       callback();
     } else {

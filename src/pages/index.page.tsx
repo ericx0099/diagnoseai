@@ -1,9 +1,16 @@
 import CallToActionWithIllustration from "@/components/public/InitialHomeComponent";
 import User from "@/types/user/User";
+import Head from "next/head";
 import PublicLayout from "@/components/public/PublicLayout";
+import { useTranslation } from "react-i18next";
+const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME!;
 export default function Home({ user }: { user: User | null }) {
+  const {t} = useTranslation();
   return (
     <PublicLayout user={user}>
+      <Head>
+        <title>{APP_NAME} - {t('public_pages:get_diagnosed_with_ai')}</title>
+      </Head>
       <CallToActionWithIllustration />
       <ThreeTierPricing user={user} />
     </PublicLayout>

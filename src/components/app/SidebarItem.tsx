@@ -20,7 +20,7 @@ const SideBarItem = ({ icon, path, children, active, ...rest }: any) => {
         borderLeftRadius={"50"}
         position={"relative"}
         _before={
-          active
+          active 
             ? {
                 content: '""',
                 position: "absolute",

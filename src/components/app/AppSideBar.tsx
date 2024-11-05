@@ -48,7 +48,7 @@ const Sidebar = ({ onClose, ...rest }: any) => {
       ],
     },
   ];
-  console.log(router.pathname);
+
   return (
     <Box transition="3s ease" zIndex={99999999} minW={"10vw"}>
       <Text

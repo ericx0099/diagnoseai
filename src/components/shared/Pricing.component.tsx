@@ -57,7 +57,7 @@ export default function ThreeTierPricing({user} : {user: User | null}) {
         link:
           process.env.NODE_ENV == "development"
             ? "https://buy.stripe.com/test_3csg0Hag6cpp5kQ5kn"
-            : "price_1QHUTMDeIPgDAIz9aZIRaABD",
+            : "",
         priceId: "price_1QHUhLDeIPgDAIz9Kb2asLgG",
         price: 4.95,
         duration: "/month",

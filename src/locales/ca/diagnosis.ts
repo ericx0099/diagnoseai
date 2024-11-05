@@ -28,7 +28,10 @@ const diagnosis = {
     input_label:"Introdueix els teus simptomes, explica tot el que et pasa per a que el resultat sigui mes precís.",
     get_new_diagnosis:"Obtenir nou diagnòstic",
     veure_mes: "Veure més",
-    chat_with_ai: "Xat amb la IA"
+    chat_with_ai: "Xat amb la IA",
+    available_diagnosis: "Diagnòstics disponibles",
+    available_aitokens: "IA Tokens disponibles",
+    no_diagnosis_available: "No tens diagnòstics disponibles.. Siusplau, compra una subscripció per a continuar."
   };
   export default diagnosis;
   
