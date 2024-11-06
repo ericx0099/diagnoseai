@@ -15,5 +15,10 @@ const plans = {
 
     "5_diagnoses_month" : "5 diagnòstics al mes",
     "20_ai_tokens": "20 Tokens d'IA",
+    you_have_no_payments: "Encara no has efectuat cap pagament.",
+    status: "Estat",
+    amount_paid: "Quantitat económica",
+    invoice_pdf_url:"PDF",
+    created_at: "Data"
 }
 export default plans;

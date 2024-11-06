@@ -4,21 +4,23 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { Language } from "@/types/language/language";
 import useApi from "@/hooks/api/useApi";
 import { useTranslation } from "react-i18next";
-
+import { useUserData } from "@/contexts/UserDataContext";
 interface ProfileConfigurationProps {
   user: User;
 }
 
 interface FormData {
-  language: string;
+  language: string | null;
 }
 
 const ProfileConfiguration = ({ user }: ProfileConfigurationProps) => {
   const [languages, setLanguages] = useState<Language[]>([]);
   const { get, post } = useApi();
   const { t, i18n } = useTranslation();
+  const {language : _language, fetchData} = useUserData();
+  console.log(_language)
   const [formData, setFormData] = useState<FormData>({
-    language: user.language,
+    language: _language ? _language.code : 'en'
   });
 
   const fetchLanguages = async () => {
@@ -30,7 +32,13 @@ const ProfileConfiguration = ({ user }: ProfileConfigurationProps) => {
 
   useEffect(() => {
     fetchLanguages();
-  }, []);
+    if (_language) {
+      setFormData((prevData) => ({
+        ...prevData,
+        language: _language.code
+      }));
+    }
+  }, [_language]);
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -38,7 +46,6 @@ const ProfileConfiguration = ({ user }: ProfileConfigurationProps) => {
       ...prevData,
       [name]: value,
     }));
-    console.log({ ...formData, [name]: value }); // Para verificar el cambio en el estado
   };
 
   const handleSubmit = async () => {
@@ -47,7 +54,7 @@ const ProfileConfiguration = ({ user }: ProfileConfigurationProps) => {
       formData
     );
     if (response?.success) {
-      i18n.changeLanguage(formData.language);
+      i18n.changeLanguage(formData.language? formData.language : 'en');
     }
   };
 
@@ -58,7 +65,8 @@ const ProfileConfiguration = ({ user }: ProfileConfigurationProps) => {
           <Text mb="8px">{t("languages:choose_language")}</Text>
           <Select
             name="language" // Asegúrate de que el nombre coincida con la clave del estado
-            value={formData.language}
+            value={formData.language ? formData.language : 'en'}
+            _selected={formData.language ? formData.language : 'en'}
             placeholder="Select A LANGUAGE"
             onChange={handleChange}
             my={1}

@@ -8,6 +8,6 @@ interface User extends DefaultUser {
   uuid: string;
   active: boolean;
   image: string;
-  language: string;
+  language: Language;
 }
 export default User;
